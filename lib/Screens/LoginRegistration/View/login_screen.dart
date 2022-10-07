@@ -1,23 +1,29 @@
 import 'package:firebase_sample_project/Constant/TextStyles/text_styles.dart';
+import 'package:firebase_sample_project/Routes/routes.dart';
 import 'package:firebase_sample_project/Services/Firebase/Auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class LogInScreen extends StatefulWidget {
+  const LogInScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<LogInScreen> createState() => _LogInScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _LogInScreenState extends State<LogInScreen> {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: Container(),
-        title: const Text('Home Screen'),
+        elevation: 0.0,
+        title: const Text(
+          'Registration/Log in Screen',
+          style: kTextStyleTitle,
+        ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -29,9 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               TextButton(
                 onPressed: () async {
-                  // Navigator.of(context).pop();
-                  await AuthService().signOut();
-                  debugPrint('Successfully logged out');
+                  await AuthService().signInAnonymously();
+                  debugPrint('Successfully logged in anonymously');
                   // Get.toNamed(home);
                 },
                 child: Container(
@@ -45,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   child: const Text(
-                    'Log Out',
+                    'Sign In Anonymously',
                     style: kTextStyleButtons,
                   ),
                 ),
